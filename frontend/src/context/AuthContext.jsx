@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
 
@@ -30,8 +31,10 @@ export function AuthProvider({ children }) {
       setUser(res.data.user);
       setToken(res.data.token);
       localStorage.setItem('gonomad_user', JSON.stringify(res.data.user));
+      toast.success(res.data.message || 'Logged in successfully!');
       return { success: true, message: res.data.message };
     } catch (err) {
+      toast.error(err.response?.data?.error || 'Login failed. Check credentials.');
       return { success: false, error: err.response?.data?.error || 'Login failed. Check credentials.' };
     } finally {
       setLoading(false);
@@ -45,8 +48,10 @@ export function AuthProvider({ children }) {
       setUser(res.data.user);
       setToken(res.data.token);
       localStorage.setItem('gonomad_user', JSON.stringify(res.data.user));
+      toast.success(res.data.message || 'Account created successfully!');
       return { success: true, message: res.data.message };
     } catch (err) {
+      toast.error(err.response?.data?.error || 'Signup failed.');
       return { success: false, error: err.response?.data?.error || 'Signup failed.' };
     } finally {
       setLoading(false);
@@ -58,6 +63,7 @@ export function AuthProvider({ children }) {
     setToken(null);
     localStorage.removeItem('gonomad_user');
     localStorage.removeItem('gonomad_token');
+    toast.success('Logged out successfully');
   };
 
   const googleLogin = async (credential) => {
@@ -67,8 +73,10 @@ export function AuthProvider({ children }) {
       setUser(res.data.user);
       setToken(res.data.token);
       localStorage.setItem('gonomad_user', JSON.stringify(res.data.user));
+      toast.success('Logged in with Google!');
       return { success: true, message: res.data.message };
     } catch (err) {
+      toast.error(err.response?.data?.error || 'Google Login failed.');
       return { success: false, error: err.response?.data?.error || 'Google Login failed.' };
     } finally {
       setLoading(false);

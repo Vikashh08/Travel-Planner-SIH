@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import { API_BASE_URL } from '../context/AuthContext';
 import { Sparkles, Compass, MapPin, Calendar, DollarSign, CheckCircle, ShieldCheck, ArrowRight, Save } from 'lucide-react';
 
@@ -31,8 +32,10 @@ export default function AiTripPlanner({ setActivePage }) {
         interests
       });
       setItinerary(res.data);
+      toast.success('AI Itinerary generated successfully!');
     } catch (err) {
       console.error('Failed to generate AI itinerary:', err);
+      toast.error('Failed to generate itinerary. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -48,8 +51,10 @@ export default function AiTripPlanner({ setActivePage }) {
         interest: interests[0] || 'Nature'
       });
       setRecommendations(res.data);
+      toast.success('AI Recommendations ready!');
     } catch (err) {
       console.error('Failed to generate recommendations:', err);
+      toast.error('Failed to generate recommendations.');
     } finally {
       setLoading(false);
     }
@@ -69,8 +74,10 @@ export default function AiTripPlanner({ setActivePage }) {
         safety: itinerary.safetyTips
       });
       setSavedSuccess(true);
+      toast.success('Trip saved to your Dashboard!');
     } catch (err) {
       console.error('Failed to save trip:', err);
+      toast.error('Failed to save trip.');
     }
   };
 

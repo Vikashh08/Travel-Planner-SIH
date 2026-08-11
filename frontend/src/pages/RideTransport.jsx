@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import L from 'leaflet';
+import toast from 'react-hot-toast';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import { useBooking } from '../context/BookingContext';
 import { useAuth, API_BASE_URL } from '../context/AuthContext';
@@ -60,6 +61,7 @@ export default function RideTransport({ setActivePage }) {
       }
     } catch (err) {
       console.error('Failed to estimate ride:', err);
+      toast.error('Failed to estimate route.');
     } finally {
       setLoading(false);
     }
@@ -83,11 +85,13 @@ export default function RideTransport({ setActivePage }) {
       const rideObj = res.data.ride;
       setActiveRide(rideObj);
       setBookingSuccess(true);
+      toast.success('Ride booked successfully! Driver is on the way.');
 
       // Trigger Socket.IO status transitions (Requirement 12)
       triggerRideSimulation(rideObj.id);
     } catch (err) {
       console.error('Failed to book ride:', err);
+      toast.error('Failed to book ride. Please try again.');
     } finally {
       setLoading(false);
     }

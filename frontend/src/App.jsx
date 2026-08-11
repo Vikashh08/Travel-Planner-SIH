@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider } from './context/BookingContext';
 import Navbar from './components/Navbar';
@@ -73,6 +74,17 @@ export default function App() {
     <AuthProvider>
       <BookingProvider>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Toaster 
+            position="top-center"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#333',
+                color: '#fff',
+                borderRadius: '10px',
+              },
+            }}
+          />
           <Navbar activePage={activePage} setActivePage={setActivePage} />
           <main style={{ flex: 1 }}>
             {renderCurrentPage()}

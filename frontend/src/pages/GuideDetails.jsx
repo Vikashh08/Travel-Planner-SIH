@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import { API_BASE_URL } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
 import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
@@ -61,6 +62,7 @@ export default function GuideDetails({ guideId, setActivePage }) {
       setRouteEstimate(res.data);
     } catch (err) {
       console.error('Failed to compute multi-stop route:', err);
+      toast.error('Failed to compute route.');
     }
   };
 
@@ -94,9 +96,11 @@ export default function GuideDetails({ guideId, setActivePage }) {
       });
 
       setActiveGuideBooking(res.data.booking);
+      toast.success('Guide booked successfully!');
       setActivePage('booking-confirmation');
     } catch (err) {
       console.error('Failed to book guide:', err);
+      toast.error('Failed to book guide.');
     }
   };
 
