@@ -1,0 +1,14 @@
+{
+  "name": "gonomad-super-app",
+  "version": "1.0.0",
+  "description": "GoNomad - Complete India Travel, Transport & Local Guide Platform",
+  "scripts": {
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
