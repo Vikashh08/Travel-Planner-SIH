@@ -44,9 +44,17 @@ export default function UserDashboard({ setActivePage, setSelectedDestination, s
               <p style={{ fontSize: '0.9rem', color: '#94A3B8' }}>{user?.email || 'traveler@gonomad.in'} • {user?.travelInterests?.join(', ') || 'Exploring India'}</p>
             </div>
           </div>
-          <button className="btn btn-primary" onClick={() => setActivePage('planner')}>
-            + Create New Trip
-          </button>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            <button className="btn btn-outline" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', borderColor: 'rgba(255,255,255,0.2)' }} onClick={() => setActivePage('mytrips')}>
+              <Calendar size={18} /> My Trips
+            </button>
+            <button className="btn btn-outline" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', borderColor: 'rgba(255,255,255,0.2)' }} onClick={() => setActivePage('bookings')}>
+              <Navigation size={18} /> Bookings
+            </button>
+            <button className="btn btn-primary" onClick={() => setActivePage('planner')}>
+              + Create New Trip
+            </button>
+          </div>
         </div>
 
         {/* Active Ride / Guide Booking Notification Cards */}
