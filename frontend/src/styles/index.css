@@ -185,7 +185,9 @@ input, select, textarea {
   z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Added slight shadow for depth */
   height: 76px;
   display: flex;
   align-items: center;
@@ -216,8 +218,28 @@ input, select, textarea {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px; /* Increased gap for better spacing */
   list-style: none;
+}
+
+.nav-link {
+  font-weight: 700; /* Made text bolder */
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px 16px; /* Increased padding */
+  border-radius: 99px; /* Pill shape for modern look */
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background: rgba(255, 90, 95, 0.1); /* Slightly stronger hover background */
+}
+
+.nav-link.active {
+  color: white; /* White text for active state */
+  background: var(--primary); /* Solid primary background for active state */
+  box-shadow: 0 4px 12px rgba(255, 90, 95, 0.3); /* Glowing shadow */
 }
 
 .auth-actions {
