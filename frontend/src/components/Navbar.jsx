@@ -88,10 +88,16 @@ export default function Navbar({ activePage, setActivePage }) {
           </li>
         </ul>
 
-        {/* Right Side Auth Actions (Original, Unchanged) */}
+        {/* Right Side Auth Actions */}
         <div className="auth-actions">
           {isLoggedIn ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              {user && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '8px' }}>
+                  <img src={user.avatar} alt={user.name} style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid var(--primary)', objectFit: 'cover' }} />
+                  <span style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--dark)', maxWidth: '100px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.name.split(' ')[0]}</span>
+                </div>
+              )}
               <button
                 className={`btn btn-sm ${activePage === 'dashboard' ? 'btn-primary' : 'btn-outline'}`}
                 onClick={() => handleNavClick('dashboard')}
@@ -178,20 +184,31 @@ export default function Navbar({ activePage, setActivePage }) {
           
           {/* Auth Actions inside Mobile Menu */}
           {isLoggedIn ? (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-              <button className={`btn btn-sm ${activePage === 'dashboard' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('dashboard')} style={{width: '100%'}}>
-                <User size={16} /> Dashboard
-              </button>
-              <button className={`btn btn-sm ${activePage === 'mytrips' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('mytrips')} style={{width: '100%'}}>
-                <Calendar size={16} /> My Trips
-              </button>
-              <button className={`btn btn-sm ${activePage === 'bookings' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('bookings')} style={{width: '100%'}}>
-                <Navigation size={16} /> Bookings
-              </button>
-              <button className="btn btn-sm btn-outline" onClick={logout} style={{ color: '#EF4444', borderColor: '#FCA5A5', width: '100%' }}>
-                <LogOut size={16} /> Logout
-              </button>
-            </div>
+            <>
+              {user && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', background: 'var(--body-bg)', padding: '16px', borderRadius: '12px' }}>
+                  <img src={user.avatar} alt={user.name} style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--primary)', objectFit: 'cover' }} />
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span style={{ fontWeight: '800', fontSize: '1.1rem', color: 'var(--dark)' }}>{user.name}</span>
+                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{user.email}</span>
+                  </div>
+                </div>
+              )}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <button className={`btn btn-sm ${activePage === 'dashboard' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('dashboard')} style={{width: '100%'}}>
+                  <User size={16} /> Dashboard
+                </button>
+                <button className={`btn btn-sm ${activePage === 'mytrips' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('mytrips')} style={{width: '100%'}}>
+                  <Calendar size={16} /> My Trips
+                </button>
+                <button className={`btn btn-sm ${activePage === 'bookings' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('bookings')} style={{width: '100%'}}>
+                  <Navigation size={16} /> Bookings
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={logout} style={{ color: '#EF4444', borderColor: '#FCA5A5', width: '100%' }}>
+                  <LogOut size={16} /> Logout
+                </button>
+              </div>
+            </>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <button className="btn btn-sm btn-outline" onClick={() => handleNavClick('login')} style={{width: '100%'}}>Login</button>
