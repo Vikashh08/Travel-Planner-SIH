@@ -121,7 +121,8 @@ export default function AiTripPlanner({ setActivePage }) {
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} disabled={loading}>
-                  <Sparkles size={20} /> {loading ? 'Generating AI Itinerary...' : 'Generate AI Itinerary'}
+                  {loading ? <span className="spinner" style={{width: '20px', height: '20px', borderWidth: '2px'}}></span> : <Sparkles size={20} />} 
+                  {loading ? ' Generating AI Itinerary...' : ' Generate AI Itinerary'}
                 </button>
               </form>
 
@@ -131,7 +132,8 @@ export default function AiTripPlanner({ setActivePage }) {
                 onClick={handleGenerateRecommendations}
                 disabled={loading}
               >
-                Need Ideas? Get AI Recommendations
+                {loading ? <span className="spinner" style={{width: '18px', height: '18px', borderWidth: '2px', borderColor: 'rgba(15,23,42,0.2)', borderLeftColor: 'var(--dark)'}}></span> : null}
+                {loading ? ' Generating...' : ' Need Ideas? Get AI Recommendations'}
               </button>
             </div>
           </div>

@@ -91,7 +91,8 @@ export default function Login({ setActivePage }) {
           </div>
 
           <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%', marginBottom: '16px' }} disabled={loading}>
-            {loading ? 'Logging in...' : 'Login to Account'}
+            {loading ? <span className="spinner" style={{width: '20px', height: '20px', borderWidth: '2px'}}></span> : null}
+            {loading ? ' Logging in...' : 'Login to Account'}
           </button>
           
           <div style={{ textAlign: 'center', marginBottom: '16px', color: '#64748B', fontSize: '0.9rem' }}>OR</div>

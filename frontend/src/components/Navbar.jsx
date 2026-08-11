@@ -163,58 +163,41 @@ export default function Navbar({ activePage, setActivePage }) {
           boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '12px',
+          gap: '4px',
           zIndex: 999
         }}>
-          <a
-            href="#home"
-            className={`btn ${activePage === 'home' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
-          >
-            Home
-          </a>
-          <a
-            href="#explore"
-            className={`btn ${activePage === 'explore' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('explore'); }}
-          >
-            Explore
-          </a>
-          <a
-            href="#destinations"
-            className={`btn ${activePage === 'destinations' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('destinations'); }}
-          >
-            Destinations
-          </a>
-          <a
-            href="#ride"
-            className={`btn ${activePage === 'ride' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('ride'); }}
-          >
-            Local Transport
-          </a>
-          <a
-            href="#planner"
-            className={`btn ${activePage === 'planner' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('planner'); }}
-          >
-            Trip Planner
-          </a>
-          <a
-            href="#guides"
-            className={`btn ${activePage === 'guides' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('guides'); }}
-          >
-            Local Guides
-          </a>
-          <a
-            href="#safety"
-            className={`btn ${activePage === 'safety' ? 'btn-primary' : 'btn-outline'}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick('safety'); }}
-          >
-            Safety
-          </a>
+          <a href="#home" className={`mobile-nav-link ${activePage === 'home' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}>Home</a>
+          <a href="#explore" className={`mobile-nav-link ${activePage === 'explore' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('explore'); }}>Explore</a>
+          <a href="#destinations" className={`mobile-nav-link ${activePage === 'destinations' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('destinations'); }}>Destinations</a>
+          <a href="#ride" className={`mobile-nav-link ${activePage === 'ride' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('ride'); }}>Local Transport</a>
+          <a href="#planner" className={`mobile-nav-link ${activePage === 'planner' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('planner'); }}>Trip Planner</a>
+          <a href="#guides" className={`mobile-nav-link ${activePage === 'guides' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('guides'); }}>Local Guides</a>
+          <a href="#safety" className={`mobile-nav-link ${activePage === 'safety' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('safety'); }}>Safety</a>
+
+          <hr style={{ border: 'none', borderTop: '1px solid #E2E8F0', margin: '16px 0' }} />
+          
+          {/* Auth Actions inside Mobile Menu */}
+          {isLoggedIn ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <button className={`btn btn-sm ${activePage === 'dashboard' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('dashboard')} style={{width: '100%'}}>
+                <User size={16} /> Dashboard
+              </button>
+              <button className={`btn btn-sm ${activePage === 'mytrips' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('mytrips')} style={{width: '100%'}}>
+                <Calendar size={16} /> My Trips
+              </button>
+              <button className={`btn btn-sm ${activePage === 'bookings' ? 'btn-primary' : 'btn-outline'}`} onClick={() => handleNavClick('bookings')} style={{width: '100%'}}>
+                <Navigation size={16} /> Bookings
+              </button>
+              <button className="btn btn-sm btn-outline" onClick={logout} style={{ color: '#EF4444', borderColor: '#FCA5A5', width: '100%' }}>
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <button className="btn btn-sm btn-outline" onClick={() => handleNavClick('login')} style={{width: '100%'}}>Login</button>
+              <button className="btn btn-sm btn-primary" onClick={() => handleNavClick('signup')} style={{width: '100%'}}>Sign Up</button>
+            </div>
+          )}
         </div>
       )}
     </nav>

@@ -132,7 +132,8 @@ export default function Signup({ setActivePage }) {
           </div>
 
           <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: '12px', marginBottom: '16px' }} disabled={loading}>
-            {loading ? 'Creating Account...' : 'Create Account'}
+            {loading ? <span className="spinner" style={{width: '20px', height: '20px', borderWidth: '2px'}}></span> : null}
+            {loading ? ' Creating Account...' : 'Create Account'}
           </button>
           
           <div style={{ textAlign: 'center', marginBottom: '16px', color: '#64748B', fontSize: '0.9rem' }}>OR</div>
