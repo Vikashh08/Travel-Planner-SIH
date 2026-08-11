@@ -6,7 +6,7 @@ export async function generateAiItinerary({ destination, startingLocation, days,
   if (apiKey && apiKey.trim() !== '' && !apiKey.includes('your_gemini_api_key')) {
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-3.6-flash' });
 
       const prompt = `You are the lead travel planner for GoNomad India. Create a detailed day-wise itinerary for a trip to ${destination}.
 Details:
@@ -105,7 +105,7 @@ export async function generateSmartRecommendations({ startingCity, budget, days,
   if (apiKey && apiKey.trim() !== '' && !apiKey.includes('your_gemini_api_key')) {
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-3.6-flash' });
       const prompt = `Recommend 3 top Indian travel destinations for a traveler starting from ${startingCity || 'Delhi'} with a budget of ₹${budget || 15000}, staying ${days || 4} days, interested in ${interest || 'Nature'}, travel style ${travelStyle || 'Relaxed'}.
 Respond ONLY with valid JSON array:
 [
