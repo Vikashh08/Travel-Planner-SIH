@@ -64,6 +64,15 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Root API endpoint for browser visitors
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to the GoNomad API Server! 🚀',
+    status: 'Running',
+    docs: 'This server provides backend services. Please visit your Vercel frontend URL to use the application.'
+  });
+});
+
 // Production Unified Frontend Static Serving
 const distPath = path.join(__dirname, '../frontend/dist');
 if (fs.existsSync(distPath)) {
